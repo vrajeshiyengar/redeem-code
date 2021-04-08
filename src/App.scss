@@ -20,10 +20,15 @@ $highlight-peach : #FFF4EF;
 .responsive-flex {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   @media (max-width : 768px) {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  }
+}
+.hide-sm {
+  @media (max-width : 768px) {
+    display: none;
   }
 }
 .app-body {
@@ -46,6 +51,22 @@ $highlight-peach : #FFF4EF;
     .redeem-text {
       margin-top: 2vh;
     }
+    .reset {
+      max-width: 16px;
+      max-height: 16px;
+      margin-right: 10px;
+    }
+    .reset-button {
+      position: fixed;
+      right: 2vw;
+      top: 2vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: calc(4px + 2vmin);
+    }
+    
     .coupon {
       max-width: 50vw;
       max-height: 40vh;

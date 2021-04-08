@@ -1,5 +1,6 @@
 import './App.scss';
 import couponSVG from './assets/coupon.svg';
+import resetSVG from './assets/recycle.svg';
 import { useState, useEffect } from "react";
 import codeMap from "./assets/codes.json"
 
@@ -24,7 +25,6 @@ const Coupons = ({ codes }) => {
 }
 
 const App = () => {
-  debugger;
 
   const fetchFromLocalStorage = () => {
     try {
@@ -46,7 +46,6 @@ const App = () => {
 
   useEffect(() => {
     setEnteredCode("");
-    debugger;
     window.localStorage.setItem("unlockedCodes",JSON.stringify(unlockedCodes))
   }, [unlockedCodes])
 
@@ -77,6 +76,12 @@ const App = () => {
       <header className="app-body">
         <div className="redeem-title">
           <span className="redeem-text">Hello :D</span>
+          <span className="reset-button" onClick={()=>{
+              setUnlockedCodes([]);
+            }}>
+            <img src={resetSVG} alt="reset" className="reset"/>
+            <span className="hide-sm">Reset coupons</span>
+          </span>
           <span className="redeem-text">Enter your code to reveal the gift number!</span>
           <img src={couponSVG} alt="coupon" className="coupon" />
           <div className="responsive-flex">
