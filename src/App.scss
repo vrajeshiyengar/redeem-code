@@ -1,0 +1,137 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:300,400);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+$bg-color:#1e2127;
+$bg-color-light:#2f3135;
+$text-color : #FFFFFF;
+
+$dark-peach : #FFAE88;
+$light-peach : #FFE5D9;
+$highlight-peach : #FFF4EF;
+
+.app {
+  text-align: center;
+}
+
+.app-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+.responsive-flex {
+  display: flex;
+  flex-direction: row;
+  @media (max-width : 768px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.app-body {
+  padding: 0px 20px;
+  background-color: $bg-color;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: 'Open sans', Arial, Helvetica, sans-serif;
+  font-size: calc(10px + 2vmin);
+  color: $text-color;
+  .redeem-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    .redeem-text {
+      margin-top: 2vh;
+    }
+    .coupon {
+      max-width: 50vw;
+      max-height: 40vh;
+      margin-top: -15px;
+    }
+    .enter-code {
+      outline: none;
+      height: 32px;
+      padding: 4px;
+      width: 100px;
+      border-radius: 4px;
+      font-family: 'Oswald', Arial, Helvetica, sans-serif;
+      text-align: center;
+      text-transform: uppercase;
+      border: 2px solid $bg-color;
+      box-shadow : 5px 5px 9px #0e0f12,
+             -5px -5px 9px #2e333c;
+    }
+    .submit-code {
+      outline: none;
+      margin-left: 20px;
+      @media (max-width : 768px) {
+        margin-left: 0px;
+        margin-top: 10px;
+      }
+      height: 40px;
+      padding: 4px;
+      width: 100px;
+      border-radius: 4px;
+      font-family: 'Oswald', Arial, Helvetica, sans-serif;
+      text-align: center;
+      text-transform: uppercase;
+      background-color: $bg-color;
+      color: $light-peach;
+      border: 2px solid $light-peach;
+      box-shadow : 5px 5px 9px #0e0f12,
+             -5px -5px 9px #2e333c;
+      &:hover {
+        background-color: $bg-color-light;
+        color: $dark-peach;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.coupons {
+  padding: 20px;
+  margin-top: 10px;
+  background-color: $bg-color;
+  box-shadow: inset 18px 18px 35px #0e0f12,
+            inset -18px -18px 35px #2e333c;
+  border-radius:10px;
+  height: 25vh;
+  overflow: scroll;
+}
+
+.coupon-container {
+  width: 50vw;
+  height: 20vw;
+  max-width: 300px;
+  max-height: 100px;
+  margin-bottom: 40px;
+  &:last-child {
+    margin-bottom: 0px;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid $dark-peach;
+  background-color: $highlight-peach;
+  color: $bg-color;
+  text-transform: uppercase;
+  border-radius: 10px;
+  box-shadow:  18px 18px 35px #0e0f12,
+             -18px -18px 35px #2e333c;
+  .code {
+    padding-bottom: 20px;
+    transform: rotate(-90deg);
+    border-bottom: 1px dashed $dark-peach;
+    font-family: 'Oswald', Arial, Helvetica, sans-serif;
+    font-size: calc(8px + 2vmin);
+    width: 30vw;
+    max-width: 100px;
+  }
+  .gift {
+    width: 100%;
+  }
+}
