@@ -48,7 +48,7 @@ const App = () => {
         alert("This code has already been redeemed!")
       }
       else {
-        setUnlockedCodes([...new Set([...unlockedCodes, enteredCode])].sort((a, b) => a - b))
+        setUnlockedCodes([...new Set([enteredCode,...unlockedCodes])])
       }
     }
   }
