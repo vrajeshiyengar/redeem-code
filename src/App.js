@@ -77,7 +77,9 @@ const App = () => {
         <div className="redeem-title">
           <span className="redeem-text">Hello :D</span>
           <span className="reset-button" onClick={()=>{
-              setUnlockedCodes([]);
+              if (window.confirm("are you sure you want to reset all unlocked codes?")) {
+                setUnlockedCodes([]);
+              }
             }}>
             <img src={resetSVG} alt="reset" className="reset"/>
             <span className="hide-sm">Reset coupons</span>
