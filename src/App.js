@@ -24,11 +24,30 @@ const Coupons = ({ codes }) => {
 }
 
 const App = () => {
-  const [unlockedCodes, setUnlockedCodes] = useState([]);
+  debugger;
+
+  const fetchFromLocalStorage = () => {
+    try {
+      if (window.localStorage.getItem("unlockedCodes") && JSON.parse(window.localStorage.getItem("unlockedCodes"))) {
+        return JSON.parse(window.localStorage.getItem("unlockedCodes"));
+      }
+      return [];
+    } catch (err) {
+      if (typeof window.localStorage.getItem("unlockedCodes") === "string" && window.localStorage.getItem("unlockedCodes").includes(",")) {
+        return window.localStorage.getItem("unlockedCodes").split(",");
+      }
+      return [];
+    }
+  }
+
+
+  const [unlockedCodes, setUnlockedCodes] = useState(fetchFromLocalStorage());
   const [enteredCode, setEnteredCode] = useState("");
 
   useEffect(() => {
     setEnteredCode("");
+    debugger;
+    window.localStorage.setItem("unlockedCodes",JSON.stringify(unlockedCodes))
   }, [unlockedCodes])
 
   const transformCode = str => str.replace(/[\W_]/g, "").toUpperCase();
