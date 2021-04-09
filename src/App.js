@@ -5,11 +5,37 @@ import codeMap from "./assets/json/codes.json";
 import STATIC from "./assets/json/static_text.json";
 import './App.scss';
 
+let confettiCreated = [];
+const createConfetti = target => {
+  const random = max => {
+    return Math.random() * (max - 0) + 0;
+  }
 
+  var c = document.createDocumentFragment();
+  for (var i = 0; i < 500; i++) {
+    var styles = `  -webkit-transform: translate3d(${(random(100) - 50)}vw, ${(random(100) - 50)}vh, 0) rotate(${random(360)}deg);
+                    transform: translate3d(${(random(100) - 50)}vw, ${(random(100) - 50)}vh, 0) rotate(${random(360)}deg);
+                    background: hsla(${random(360)},100%,50%,1);
+                    animation: bang 1000ms ease-out forwards;
+                    opacity: 0;
+                    left:${random(2) > 1 ? "0" : "100%"};`;
+
+    var e = document.createElement("i");
+    e.style.cssText = styles.toString();
+    c.appendChild(e);
+    confettiCreated.push(e);
+  }
+  target.appendChild(c);
+  window.setTimeout(() => {
+    confettiCreated.forEach(elem => elem.parentNode.removeChild(elem));
+    confettiCreated = [];
+  }, 1200)
+
+}
 
 const Coupon = ({ code }) => {
   return (
-    <div className="coupon-container newly-added">
+    <div className="coupon-container slide-left">
       <div className="code">{code}</div>
       <div className="gift">{codeMap[code]}</div>
     </div>
@@ -46,8 +72,15 @@ const App = () => {
   const [enteredCode, setEnteredCode] = useState("");
 
   useEffect(() => {
+
     setEnteredCode("");
-    window.localStorage.setItem("unlockedCodes",JSON.stringify(unlockedCodes))
+
+    window.localStorage.setItem("unlockedCodes", JSON.stringify(unlockedCodes))
+    const target = document.getElementById("app-root")
+    if (unlockedCodes.length) {
+      createConfetti(target);
+    }
+
   }, [unlockedCodes])
 
   const transformCode = str => str.replace(/[\W_]/g, "").toUpperCase();
@@ -67,23 +100,23 @@ const App = () => {
         alert(STATIC.DUPLICATE_CODE)
       }
       else {
-        setUnlockedCodes([...new Set([enteredCode,...unlockedCodes])])
+        setUnlockedCodes([...new Set([enteredCode, ...unlockedCodes])])
       }
     }
   }
 
   return (
-    <div className="app">
+    <div id="app-root" className="app">
       <header className="app-body">
         <div className="redeem-title">
           <span className="redeem-text title">{STATIC.PAGE_TITLE}</span>
           <span className="redeem-text subtitle">{STATIC.PAGE_SUBTITLE}</span>
-          <span className="reset-button" onClick={()=>{
-              if (window.confirm(STATIC.CONFIRM_RESET)) {
-                setUnlockedCodes([]);
-              }
-            }}>
-            <img src={resetSVG} alt="reset" className="reset"/>
+          <span className="reset-button" onClick={() => {
+            if (window.confirm(STATIC.CONFIRM_RESET)) {
+              setUnlockedCodes([]);
+            }
+          }}>
+            <img src={resetSVG} alt="reset" className="reset" />
             <span className="hide-sm">{STATIC.RESET_BUTTON}</span>
           </span>
           <img src={couponSVG} alt="coupon" className="coupon" />

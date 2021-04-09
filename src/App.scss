@@ -13,20 +13,103 @@ html, body {
   background-color: $bg-color;
 }
 
-.newly-added {
-  animation: flyin 0.5s ease-in forwards;
+i {
+  position: fixed;
+  display: block;
+  top: 50%;
+  width: 4px;
+  height: 10px;
+  background: red;
   opacity: 0;
-  transform: scale(2);
-  filter: blur(5px);
 }
 
-@keyframes flyin {
-   to { 
-     filter: blur(0);
-     transform: scale(1);
-     opacity: 1;
-   }
+.newly-added {
+  animation: flyin 0.2s ease-in forwards;
+  opacity: 0;
+  transform: scale(1.5);
+  filter: blur(3px);
 }
+
+.slide-left {
+  overflow: hidden;
+	-webkit-animation: slide-left 1s ease-in-out both;
+	        animation: slide-left 1s ease-in-out both;
+}
+
+@-webkit-keyframes bang {
+  from {
+    -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity:1;
+  }
+}
+
+@keyframes bang {
+  from {
+    -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity:1;
+  }
+}
+
+@-webkit-keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+            max-height: 0px;
+            border-width: 0px;
+    
+  }
+  15% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+            max-height: 5px;
+            border-width: 5px;
+    
+  }
+  50% {
+    -webkit-transform: translateX(-300px);
+            transform: translateX(-300px);
+            max-height: 5px;
+            border-width: 5px;
+    
+  }
+  100% {
+    -webkit-transform: translateX(-300px);
+            transform: translateX(-300px);
+            max-height: 100px;
+            border-width: 5px;
+  }
+}
+@keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+            max-height: 0px;
+            border-width: 0px;
+  }
+  15% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+            max-height: 5px;
+            border-width: 5px;
+    
+  }
+  50% {
+    -webkit-transform: translateX(-300px);
+            transform: translateX(-300px);
+            max-height: 5px;
+            border-width: 5px;
+    
+  }
+  100% {
+    -webkit-transform: translateX(-300px);
+            transform: translateX(-300px);
+            max-height: 100px;
+            border-width: 5px;
+  }
+};
+
 
 .app {
   text-align: center;
@@ -145,11 +228,15 @@ html, body {
 }
 
 .coupon-container {
+  transition: 0.5s ease-in;
+  overflow: hidden;
   width: 50vw;
   max-width: 300px;
   height: 20vw;
   max-height: 100px;
   margin-bottom: 40px;
+  margin-left: 300px;
+  margin-right: -300px;
   &:last-child {
     margin-bottom: 0px;
   }
@@ -166,7 +253,7 @@ html, body {
   .code {
     padding-bottom: 20px;
     transform: rotate(-90deg);
-    border-bottom: 1px dashed $dark-peach;
+    border-bottom: 2px dashed $dark-peach;
     font-family: 'Oswald', Arial, Helvetica, sans-serif;
     font-size: calc(8px + 2vmin);
     width: 30vw;
