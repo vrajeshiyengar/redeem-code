@@ -1,0 +1,9 @@
+{
+    "PAGE_TITLE" : "Hello! :D",
+    "PAGE_SUBTITLE" : "Enter a code below to unlock your gifts!",
+    "NO_CODE" : "Please enter a code.",
+    "INVALID_CODE" : "The code you entered is invalid :(\nPlease try again!",
+    "DUPLICATE_CODE" : "This code has already been redeemed!",
+    "CONFIRM_RESET" : "Are you sure you want to reset all unlocked codes?",
+    "RESET_BUTTON" : "Reset coupons"
+}

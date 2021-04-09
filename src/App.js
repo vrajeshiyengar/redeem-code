@@ -1,14 +1,15 @@
-import './App.scss';
-import couponSVG from './assets/coupon.svg';
-import resetSVG from './assets/recycle.svg';
 import { useState, useEffect } from "react";
-import codeMap from "./assets/codes.json"
+import couponSVG from './assets/img/coupon.svg';
+import resetSVG from './assets/img/recycle.svg';
+import codeMap from "./assets/json/codes.json";
+import STATIC from "./assets/json/static_text.json";
+import './App.scss';
 
 
 
 const Coupon = ({ code }) => {
   return (
-    <div className="coupon-container">
+    <div className="coupon-container newly-added">
       <div className="code">{code}</div>
       <div className="gift">{codeMap[code]}</div>
     </div>
@@ -20,7 +21,7 @@ const Coupons = ({ codes }) => {
     return <></>
   }
   return <div className="coupons">{
-    codes.filter(x => codeMap.hasOwnProperty(x)).map(x => <Coupon code={x} />)
+    codes.filter(x => codeMap.hasOwnProperty(x)).map(x => <Coupon key={x} code={x} />)
   }</div>
 }
 
@@ -57,13 +58,13 @@ const App = () => {
 
   const handleSubmit = () => {
     if (!enteredCode) {
-      alert("please enter a code")
+      alert(STATIC.NO_CODE)
     } else {
       if (!codeMap.hasOwnProperty(enteredCode)) {
-        alert("The code you entered is invalid :( please try again!")
+        alert(STATIC.INVALID_CODE)
       }
       else if (unlockedCodes.includes(enteredCode)) {
-        alert("This code has already been redeemed!")
+        alert(STATIC.DUPLICATE_CODE)
       }
       else {
         setUnlockedCodes([...new Set([enteredCode,...unlockedCodes])])
@@ -75,16 +76,16 @@ const App = () => {
     <div className="app">
       <header className="app-body">
         <div className="redeem-title">
-          <span className="redeem-text">Hello :D</span>
+          <span className="redeem-text title">{STATIC.PAGE_TITLE}</span>
+          <span className="redeem-text subtitle">{STATIC.PAGE_SUBTITLE}</span>
           <span className="reset-button" onClick={()=>{
-              if (window.confirm("are you sure you want to reset all unlocked codes?")) {
+              if (window.confirm(STATIC.CONFIRM_RESET)) {
                 setUnlockedCodes([]);
               }
             }}>
             <img src={resetSVG} alt="reset" className="reset"/>
-            <span className="hide-sm">Reset coupons</span>
+            <span className="hide-sm">{STATIC.RESET_BUTTON}</span>
           </span>
-          <span className="redeem-text">Enter your code to reveal the gift number!</span>
           <img src={couponSVG} alt="coupon" className="coupon" />
           <div className="responsive-flex">
             <input
