@@ -16,7 +16,7 @@ const createConfetti = target => {
     var styles = `  -webkit-transform: translate3d(${(random(200) - 100)}vw, ${(random(100) - 50)}vh, 0) rotate(${random(360)}deg);
                     transform: translate3d(${(random(100) - 50)}vw, ${(random(100) - 50)}vh, 0) rotate(${random(360)}deg);
                     background: hsla(${random(360)},100%,50%,1);
-                    animation: bang 1500ms ease-in-out forwards;
+                    animation: bang 1500ms ease forwards;
                     opacity: 0;
                     left:${random(2) > 1 ? "0" : "100%"};`;
 
