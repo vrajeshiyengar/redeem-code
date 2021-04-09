@@ -23,13 +23,6 @@ i {
   opacity: 0;
 }
 
-.newly-added {
-  animation: flyin 0.2s ease-in forwards;
-  opacity: 0;
-  transform: scale(1.5);
-  filter: blur(3px);
-}
-
 .slide-left {
   overflow: hidden;
 	-webkit-animation: slide-left 1s ease-in-out both;
@@ -37,18 +30,30 @@ i {
 }
 
 @-webkit-keyframes bang {
-  from {
+  0% {
     -webkit-transform: translate3d(0,0,0);
             transform: translate3d(0,0,0);
             opacity:1;
   }
+70% {
+            opacity:1;
+  }
+  0% {
+            opacity:0;
+  }
 }
 
 @keyframes bang {
-  from {
+  0% {
     -webkit-transform: translate3d(0,0,0);
             transform: translate3d(0,0,0);
             opacity:1;
+  }
+  70% {
+            opacity:1;
+  }
+  0% {
+            opacity:0;
   }
 }
 
@@ -224,7 +229,20 @@ i {
             inset -18px -18px 35px #2e333c;
   border-radius:10px;
   height: 25vh;
-  overflow: scroll;
+  overflow: hidden scroll;
+  ::-webkit-scrollbar-thumb {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background : rgba(0,0,0,1);
+    border: 1px solid $bg-color-light;
+    border-radius: 10px;
+
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
 }
 
 .coupon-container {
