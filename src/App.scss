@@ -174,7 +174,9 @@ i {
       cursor: pointer;
       font-size: calc(4px + 2vmin);
     }
-    
+    .counter {
+      margin: 10px;
+    }
     .coupon {
       max-width: 50vw;
       max-height: 40vh;
@@ -279,5 +281,27 @@ i {
   }
   .gift {
     width: 100%;
+  }
+}
+
+.timer {
+  font-size: calc(10px + 10vmin);
+  font-family: 'Oswald', Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50vw;
+  @media (max-width : 768px) {
+    width: 80vw
+  }
+  height: 100vh;
+  .timer-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    span:last-child {
+      font-size: calc(3px + 3vmin);
+    }
   }
 }
