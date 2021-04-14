@@ -161,7 +161,7 @@ const App = () => {
   return (
     <div id="app-root" className="app">
       <header className="app-body">
-        { timeLeft > 0 ? 
+        { timeLeft >= 0 ? 
           <Timer timer={timer}/>
 
           : <div className="redeem-title">
